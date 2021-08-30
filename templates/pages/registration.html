@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title_page %}{% endblock %}
+
+{% block style-libs %}{% endblock %}
+
+{% block style %}{% endblock %}
+
+{% block content %}
+
+    <div class="box__wrap">
+        <div class="form__box">
+
+            <form action="{% url 'verifier' %}" method="post">
+                {% csrf_token %}
+                <div class="form__box-head">
+                    <h2 class="form__title">
+                        Регистрация
+                    </h2>
+                </div>
+                <input id="firebase_token_id" name="firebase_token_id" type="hidden">
+                <label class="form__input-wrap">
+                    <input type="text" id="id_first_name" name="first_name" class="form__input" placeholder="Имя" required>
+                </label>
+                <label class="form__input-wrap">
+                    <input type="text" id="id_last_name" name="last_name" class="form__input" placeholder="Фамилия" required>
+                </label>
+                <label class="form__input-wrap form__password-input-wrap">
+                    <input type="password" id="id_password1" name="password1" class="form__input" placeholder="Придумайте пароль" required>
+                    <div class="form__eye"></div>
+                </label>
+                <label class="form__input-wrap form__password-input-wrap">
+                    <input type="password" id="id_password2" name="password2" class="form__input" placeholder="Повторите пароль" required>
+                    <div class="form__eye"></div>
+                </label>
+                <div style="text-align: center">{{ form.errors }}</div>
+                {{ form.error }}
+                {{ form.phone_number }}
+                <button class="form__btn" type="submit">
+                    Зарегистрироваться
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="success__notification">
+        Регистрация прошла успешно
+    </div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+        document.getElementById('phone_number').value = localStorage['user_token']
+</script>
+
+{% endblock %}

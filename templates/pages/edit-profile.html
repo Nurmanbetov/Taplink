@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title_page %}{% endblock %}
+
+{% block style-libs %}{% endblock %}
+
+{% block style %}{% endblock %}
+
+{% block content %}
+
+    <div class="box__wrap">
+        <div class="form__box">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form__box-head">
+                    <h2 class="form__title">
+                        Профиль
+                    </h2>
+                    <a href="{% url 'logout' %}" class="form__reg form__sign-out">
+                        Выход
+                    </a>
+                </div>
+                <label class="form__input-wrap">
+                    <h4>{{ user.phone_number }}<hr><br>{{ user.first_name }}</h4>
+                    <input type="text" class="form__input" id="id_first_name" name="first_name" placeholder="Введите новое имя" required>
+                </label>
+                <label class="form__input-wrap">
+                <h4>{{ user.last_name }}</h4>
+                    <input type="text" class="form__input" id="id_last_name" name="last_name" placeholder="Введите новую фамилию" required>
+                </label>
+                <button class="form__btn" type="submit">
+                    Сохранить изменения
+                </button>
+                <a href="{% url 'old-password-change' %}" class="sms__timer change__filed">
+                    Сменить пароль
+                </a>
+                <a href="{% url 'change-number' %}" class="sms__timer change__filed">
+                    Сменить номер
+                </a>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}{% endblock%}

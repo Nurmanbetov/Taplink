@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title_page %}{% endblock %}
+
+{% block style-libs %}{% endblock %}
+
+{% block style %}{% endblock %}
+
+{% block content %}
+
+    <div class="box__wrap">
+        <div class="form__box">
+            <form method="post" id="sign-in-form">
+                   {% csrf_token %}
+                <div class="form__box-head">
+                    <h2 class="form__title">
+                        Авторизация
+                    </h2>
+                    <a href="{% url 'phone-verifier' %}" class="form__reg">
+                        Регистрация
+                    </a>
+                </div>
+                <label class="form__input-wrap">
+                    <input type="text" class="form__input form__input-tel" id="id_username" required name="username">
+                </label>
+
+                <label class="form__input-wrap form__password-input-wrap">
+                    <input type="password" class="form__input" placeholder="Введите пароль" id="id_password" name="password" required >
+                    <div class="form__eye"></div>
+                </label>
+                {{ form.non_field_errors }}
+                <button id="valid_number" onclick="getNumber()" class="form__btn" name="login" type="submit">
+                    Войти
+                </button>
+                <a href="{% url 'password-reset-number' %}" class="forget__password">
+                    Забыли пароль?
+                </a>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+
+function getNumber() {
+    let countryCode = document.getElementsByClassName("iti__selected-dial-code")[0].innerText;
+    let inputNumber = document.getElementsByClassName("form__input form__input-tel").item(0).value;
+    let phoneNumber = countryCode + inputNumber
+    document.getElementsByClassName('form__input form__input-tel').item(0).value = phoneNumber.replace(/\s+/g, "")
+    document.getElementsByClassName(".form__btn")
+    console.log(phoneNumber)
+
+}
+</script>
+
+{% endblock %}

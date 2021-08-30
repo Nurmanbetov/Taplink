@@ -1,0 +1,12 @@
+pip~=21.0.1
+keyring~=18.0.1
+setuptools~=45.2.0
+Django==3.1.7
+psycopg2==2.8.6
+environs==9.3.2
+environ==1.0
+bootstrap4==0.1.0
+django-phonenumber-field==5.0.0
+phonenumbers==8.12.20
+django-bootstrap4==2.3.1
+firebase-admin==4.5.3

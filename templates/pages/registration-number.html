@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title_page %}{% endblock %}
+
+{% block style-libs %}{% endblock %}
+
+{% block style %}{% endblock %}
+
+
+{% block content %}
+    <div id="changeble_div">
+        <div class="box__wrap">
+            <div class="form__box">
+                <form method="get" action="{% url 'phone-verify' %}" data-url id="registration-form">
+                    {% csrf_token %}
+                    <div class="form__box-head">
+                        <h2 class="form__title">
+                            Для продолжения, введите номер телефона
+                        </h2>
+                    </div>
+
+                    <label class="form__input-wrap">
+                        <input type="text" id="phone_number" name="phone_number" class="form__input form__input-tel" required>
+                    </label>
+
+                    <div id="error-message">
+                    </div>
+                    <button class="form__btn" type="submit">
+                        Отправить код
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <button id='sign-in-button'  hidden></button>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/phone_number_verify.js' %}"></script>
+{% endblock %}
